@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using MyApp_fcc.Data;
+
 namespace MyApp_fcc
 {
     public class Program
@@ -8,6 +11,9 @@ namespace MyApp_fcc
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<MyAppContext>(
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString"))
+                );
 
             var app = builder.Build();
 
